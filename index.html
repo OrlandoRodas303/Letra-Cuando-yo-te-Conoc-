@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuando Yo Te Conocí - Letra Animada</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .lyrics {
+            font-size: 24px;
+            opacity: 0.3;
+            transition: opacity 0.5s;
+        }
+        .highlight {
+            opacity: 1;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cuando Yo Te Conocí - Alex Zurdo</h1>
+    <div id="lyrics-container"></div>
+    <audio id="audio" controls>
+        <source src="tu_cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+    <script>
+        const lyrics = [
+            { time: 5, text: "Siempre recuerdo aquel día en que tú me encontraste" },
+            { time: 10, text: "Esa experiencia que yo jamás olvidaré" },
+            { time: 15, text: "Fue mejor que viajar por un bote en Miami" },
+            { time: 20, text: "O como poco ganarme diez Grammy's" },
+            { time: 25, text: "Mejor que sacarme una selfie en la torre en Paris" },
+            { time: 30, text: "Ni escalar la montaña más alta" },
+            { time: 35, text: "Y mirar el mundo desde allí" },
+            { time: 40, text: "Nada podrá compararse y lo quiero decir" },
+            { time: 45, text: "Que cuando yo te conocí, Dios" },
+            { time: 50, text: "Algo en mí, en mí cambió" }
+        ];const lyricsContainer = document.getElementById("lyrics-container");
+    const audio = document.getElementById("audio");
+    
+    lyrics.forEach((line, index) => {
+        const p = document.createElement("p");
+        p.classList.add("lyrics");
+        p.textContent = line.text;
+        lyricsContainer.appendChild(p);
+    });
+    
+    audio.addEventListener("timeupdate", () => {
+        let currentTime = audio.currentTime;
+        lyrics.forEach((line, index) => {
+            let p = lyricsContainer.children[index];
+            if (currentTime >= line.time) {
+                p.classList.add("highlight");
+            } else {
+                p.classList.remove("highlight");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
